@@ -4,15 +4,15 @@ import matplotlib.pyplot as plt
 import torch.nn as nn
 
 torch.manual_seed(1)
-X = torch.randn(50, 1) # <--- 改成 1 维特征
-true_w = torch.tensor([2.0]) # <--- 对应的真实权重也只需要 1 个
+X = torch.randn(50, 1) 
+true_w = torch.tensor([2.0]) 
 true_b = 4.0
 Y = X @ true_w + true_b + torch.randn(50) * 0.1
 
 class linearregressionmodel(nn.Module):
     def __init__(self):
         super(linearregressionmodel, self).__init__()
-        self.linear = nn.Linear(1, 1) # <--- 这里输入特征数改成 1
+        self.linear = nn.Linear(1, 1) 
         
     def forward(self, x):
         return self.linear(x)
@@ -41,8 +41,8 @@ print(f'Predicted bias: {model.linear.bias.data.numpy()}')
 with torch.no_grad(): 
     predictions = model(X)
 
-# 绘制散点图和拟合的直线
+
 plt.scatter(X.numpy(), Y.numpy(), color='blue', label='True values')
-plt.plot(X.numpy(), predictions.numpy(), color='red', label='Predictions') # 注意这里用 plt.plot 画线
+plt.plot(X.numpy(), predictions.numpy(), color='red', label='Predictions') 
 plt.legend()
 plt.show()
